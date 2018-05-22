@@ -1,6 +1,6 @@
-import logo from './../graphic/logo.jpg';
-import theme from './../audio/theme.mp3';
-import gong from './../audio/gong.wav';
+import logo from './../graphics/logo.jpg';
+import theme from './../audios/theme.mp3';
+import gong from './../audios/gong.wav';
 
 export const RESOURCES = {
     GRAPHICS: {

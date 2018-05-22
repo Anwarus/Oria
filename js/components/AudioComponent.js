@@ -1,4 +1,4 @@
-import { Component } from './Component';
+import { Component } from './../Component';
 
 export class AudioComponent extends Component {
     constructor(audioContext, audioSource) {

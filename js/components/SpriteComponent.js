@@ -1,4 +1,4 @@
-import { Component } from './Component';
+import { Component } from './../Component';
 
 export class SpriteComponent extends Component {
     constructor(positionComponent, imageComponent) {

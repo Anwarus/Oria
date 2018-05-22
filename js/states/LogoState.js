@@ -1,7 +1,7 @@
-import { SpriteComponent } from './SpriteComponent';
-import { PositionComponent } from './PositionComponent';
-import { ImageComponent } from './ImageComponent';
-import { AudioComponent } from './AudioComponent';
+import { SpriteComponent } from './components/SpriteComponent';
+import { PositionComponent } from './components/PositionComponent';
+import { ImageComponent } from './components/ImageComponent';
+import { AudioComponent } from './components/AudioComponent';
 
 export class LogoState {
     constructor(game) {
