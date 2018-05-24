@@ -1,16 +1,8 @@
 import { State } from './../State';
-import { SpriteComponent } from './components/SpriteComponent';
-import { PositionComponent } from './components/PositionComponent';
-import { ImageComponent } from './components/ImageComponent';
-import { AudioComponent } from './components/AudioComponent';
 
-export class LogoState extends State {
+export class DungeonState extends State {
     constructor(game) {
         super(game);
-
-        this.sceneObject = {};
-        this.logoObject = {}  
-        // this.slider = new Component();
     }
 
     init = () => {
@@ -30,7 +22,7 @@ export class LogoState extends State {
     }
 
     input = () => {
-
+        
     }
 
     update = (delta) => {
