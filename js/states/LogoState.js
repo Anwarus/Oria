@@ -16,12 +16,12 @@ export class LogoState extends State {
     init = () => {
         this.sceneObject = new AudioComponent(
             this.game.audioContext,
-            this.game.resourceManager.getAudio('theme').resource
+            this.game.resourceManager.getAudio('theme')
         );
 
         this.logoObject = new SpriteComponent(
             new PositionComponent(0, 0),
-            new ImageComponent( this.game.resourceManager.getGraphic('logo').resource)
+            new ImageComponent( this.game.resourceManager.getGraphic('logo'))
         );
 
         this.sceneObject.play();
