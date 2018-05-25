@@ -70,14 +70,12 @@ export class ResourceManager {
     getGraphic = (name) => {
         return this.graphics.find((graphic) => {
             return graphic.name === name;
-        });
+        }).resource;
     }
 
     getAudio = (name) => {
-        let audio = this.audios.find((audio) => {
+        return audio = this.audios.find((audio) => {
             return audio.name === name;
-        })
-        console.log(audio);
-        return audio;
+        }).resource;
     }
 }
