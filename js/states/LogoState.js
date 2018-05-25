@@ -1,8 +1,8 @@
 import { State } from './../State';
-import { SpriteComponent } from './components/SpriteComponent';
-import { PositionComponent } from './components/PositionComponent';
-import { ImageComponent } from './components/ImageComponent';
-import { AudioComponent } from './components/AudioComponent';
+import { SpriteComponent } from './../components/SpriteComponent';
+import { PositionComponent } from './../components/PositionComponent';
+import { ImageComponent } from './../components/ImageComponent';
+import { AudioComponent } from './../components/AudioComponent';
 
 export class LogoState extends State {
     constructor(game) {
