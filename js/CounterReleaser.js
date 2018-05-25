@@ -11,6 +11,6 @@ export class CounterReleaser {
 
         if(this.counterStart === this.counterEnd)
             if(this.callback)
-                setTimeout(this.callback(), 3000);
+                this.callback();
     }
 }
