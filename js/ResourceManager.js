@@ -74,7 +74,7 @@ export class ResourceManager {
     }
 
     getAudio = (name) => {
-        return audio = this.audios.find((audio) => {
+        return this.audios.find((audio) => {
             return audio.name === name;
         }).resource;
     }
