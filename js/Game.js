@@ -26,6 +26,11 @@ export class Game {
         else
             throw 'Error: Context unsupported!';
 
+        //Bind input function to be called on every key pressed for current state
+        document.addEventListener('keyup', (event) => {
+            this.input(event.key);
+        });
+
         //Load required data to be able to start game loading screen
         this.resourceManager.load({
             graphics: [
@@ -43,8 +48,7 @@ export class Game {
         if(currentState) {
             if(!currentState.inited)
                 currentState.init();
-                
-            currentState.input();
+            
             //Assuming that requestAnimationFrame will call every 1/60 of second
             currentState.update(1./60.);
             currentState.draw(this.graphicContext);
@@ -53,5 +57,14 @@ export class Game {
         }
         
         window.requestAnimationFrame(this.loop);
+    }
+
+    input = (event) => {
+        let currentState = this.stateManager.getCurrentState();
+
+        if(currentState) {
+            if(currentState.inited)
+                currentState.input(event);
+        }
     }
 }
