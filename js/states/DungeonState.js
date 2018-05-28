@@ -3,25 +3,18 @@ import { State } from './../State';
 export class DungeonState extends State {
     constructor(game) {
         super(game);
+
+        this.playerObject = {};
+        this.mapObject = {};
     }
 
     init = () => {
-        this.sceneObject = new AudioComponent(
-            this.game.audioContext,
-            this.game.resourceManager.getAudio('theme').resource
-        );
-
-        this.logoObject = new SpriteComponent(
-            new PositionComponent(0, 0),
-            new ImageComponent( this.game.resourceManager.getGraphic('logo').resource)
-        );
-
-        this.sceneObject.play();
+        
 
         this.inited = true;
     }
 
-    input = () => {
+    input = (key) => {
         
     }
 
@@ -30,6 +23,7 @@ export class DungeonState extends State {
     }
 
     draw = (context) => {
-        this.logoObject.draw(context);
+        this.mapObject.draw(context);
+        this.playerObject.draw(context);
     }
 }
