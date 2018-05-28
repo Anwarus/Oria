@@ -29,8 +29,8 @@ export class LogoState extends State {
         this.inited = true;
     }
 
-    input = () => {
-
+    input = (key) => {
+        console.log(key);
     }
 
     update = (delta) => {
