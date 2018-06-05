@@ -13,6 +13,11 @@ export class Entity {
         this.components.push(component);
     }
 
+    addChild = (child) => {
+        child.parent = this;
+        this.childs.push(child);
+    }
+
     input = (key) => {
         this.components.forEach((component) => {
             if(component.input)
