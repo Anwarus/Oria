@@ -1,30 +1,35 @@
 import { State } from './../State';
+import { Entity } from './../Entity';
 import { SpriteComponent } from './../components/SpriteComponent';
 import { PositionComponent } from './../components/PositionComponent';
-import { ImageComponent } from './../components/ImageComponent';
 import { AudioComponent } from './../components/AudioComponent';
 
 export class LogoState extends State {
     constructor(game) {
         super(game);
 
-        this.sceneObject = {};
-        this.logoObject = {}  
+        this.sceneEntity = new Entity({ name: 'scene' });
+        this.logoEntity = new Entity({ name: 'logo' });  
         // this.slider = new Component();
     }
 
     init = () => {
-        this.sceneObject = new AudioComponent(
-            this.game.audioContext,
-            this.game.resourceManager.getAudio('theme')
-        );
+        this.sceneEntity.addComponent(new AudioComponent({
+            audioContext: this.game.audioContext,
+            audioSource: this.game.resourceManager.getAudio('theme')
+        }));
 
-        this.logoObject = new SpriteComponent(
-            new PositionComponent(0, 0),
-            new ImageComponent( this.game.resourceManager.getGraphic('logo'))
-        );
+        // this.logoEntity.addComponent(new SpriteComponent(
+        //     new PositionComponent(0, 0),
+        //     new ImageComponent( this.game.resourceManager.getGraphic('logo'))
+        // ));
 
-        this.sceneObject.play();
+        //Load required data to be able to start game loading screen
+        this.game.resourceManager.load({
+            graphics: [
+                RESOURCES.GRAPHICS.TILE
+            ]
+        }, this.finishLoading);
 
         this.inited = true;
     }
@@ -38,6 +43,10 @@ export class LogoState extends State {
     }
 
     draw = (context) => {
-        this.logoObject.draw(context);
+        //this.logoEntity.draw(context);
+    }
+
+    finishLoading = () => {
+
     }
 }

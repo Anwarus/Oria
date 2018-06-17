@@ -1,6 +1,7 @@
 export class Entity {
-    constructor(name = 'default', parent = {}) {
+    constructor({name = 'Entity', tag = '', parent = {}}) {
         this.name = name;
+        this.tag = tag;
         
         this.parent = parent;
         this.childs = [];

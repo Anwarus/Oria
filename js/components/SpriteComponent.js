@@ -1,14 +1,15 @@
 import { Component } from './../Component';
 
 export class SpriteComponent extends Component {
-    constructor(positionComponent, imageComponent) {
+    constructor({ transformComponent = {}, image = {} }) {
         super();
 
-        this.positionComponent = positionComponent;
-        this.imageComponent = imageComponent;
+        this.transformComponent = transformComponent;
+
+        this.image = image;
     }
 
     draw = (context) => {
-        context.drawImage(this.imageComponent.image, this.positionComponent.x, this.positionComponent.y);
+        context.drawImage(image, this.transformComponent.posX, this.transformComponent.posY);
     }
 }
