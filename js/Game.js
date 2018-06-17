@@ -1,5 +1,5 @@
-import { ResourceManager } from './ResourceManager';
 import { RESOURCES } from './resources';
+import { ResourceManager } from './ResourceManager';
 import { StateManager } from './StateManager';
 import { LogoState } from './states/LogoState';
 

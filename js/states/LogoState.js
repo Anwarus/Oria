@@ -1,7 +1,8 @@
+import { RESOURCES } from './../resources';
 import { State } from './../State';
 import { Entity } from './../Entity';
 import { SpriteComponent } from './../components/SpriteComponent';
-import { PositionComponent } from './../components/PositionComponent';
+import { TransformComponent } from './../components/TransformComponent';
 import { AudioComponent } from './../components/AudioComponent';
 
 export class LogoState extends State {
@@ -19,10 +20,13 @@ export class LogoState extends State {
             audioSource: this.game.resourceManager.getAudio('theme')
         }));
 
-        // this.logoEntity.addComponent(new SpriteComponent(
-        //     new PositionComponent(0, 0),
-        //     new ImageComponent( this.game.resourceManager.getGraphic('logo'))
-        // ));
+        this.logoEntity.addComponent(new SpriteComponent({
+            transformComponent: new TransformComponent({
+                posX: 0,
+                posY: 0
+            }),
+            image: this.game.resourceManager.getGraphic('logo')
+        }));
 
         //Load required data to be able to start game loading screen
         this.game.resourceManager.load({
@@ -43,10 +47,10 @@ export class LogoState extends State {
     }
 
     draw = (context) => {
-        //this.logoEntity.draw(context);
+        this.logoEntity.draw(context);
     }
 
     finishLoading = () => {
-
+        console.log('finishedLoading');
     }
 }

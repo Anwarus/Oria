@@ -10,6 +10,6 @@ export class SpriteComponent extends Component {
     }
 
     draw = (context) => {
-        context.drawImage(image, this.transformComponent.posX, this.transformComponent.posY);
+        context.drawImage(this.image, this.transformComponent.posX, this.transformComponent.posY);
     }
 }
