@@ -4,6 +4,7 @@ import { Entity } from './../Entity';
 import { SpriteComponent } from './../components/SpriteComponent';
 import { TransformComponent } from './../components/TransformComponent';
 import { AudioComponent } from './../components/AudioComponent';
+import { DungeonState } from './DungeonState';
 
 export class LogoState extends State {
     constructor(game) {
@@ -35,22 +36,13 @@ export class LogoState extends State {
             ]
         }, this.finishLoading);
 
+        this.scene.push(this.sceneEntity);
+        this.scene.push(this.logoEntity);
+
         this.inited = true;
     }
 
-    input = (key) => {
-        console.log(key);
-    }
-
-    update = (delta) => {
-
-    }
-
-    draw = (context) => {
-        this.logoEntity.draw(context);
-    }
-
     finishLoading = () => {
-        console.log('finishedLoading');
+        this.game.stateManager.addState(new DungeonState(this.game));
     }
 }

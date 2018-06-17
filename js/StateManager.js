@@ -1,11 +1,9 @@
 export class StateManager {
     constructor(initialState) {
         this.states = [];
-        this.currentState = {};
 
         if(initialState) {
             this.states.push(initialState);
-            this.currentState = initialState;
         }
     }
 
@@ -21,6 +19,6 @@ export class StateManager {
     }
 
     getCurrentState = () => {
-        return this.currentState;
+        return this.states[this.states.length - 1];
     }
 }

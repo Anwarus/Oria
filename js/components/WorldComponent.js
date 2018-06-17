@@ -2,7 +2,7 @@ import { Component } from './../Component';
 
 export class WorldComponent extends Component {
     constructor(world) {
-        super();
+        super('WorldComponent');
 
         this.player = {};
         this.objects = [];

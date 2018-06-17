@@ -14,6 +14,12 @@ export class Entity {
         this.components.push(component);
     }
 
+    getComponent = (name) => {
+        return this.components.find((component) => {
+            return (component.name === name);
+        });
+    }
+
     addChild = (child) => {
         child.parent = this;
         this.childs.push(child);

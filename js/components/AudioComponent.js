@@ -2,7 +2,7 @@ import { Component } from './../Component';
 
 export class AudioComponent extends Component {
     constructor({ audioContext = {}, audioSource = {} }) {
-        super();
+        super('AudioComponent');
 
         this.audioContext = audioContext;
         this.audioSource = audioSource;
