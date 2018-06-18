@@ -1,8 +1,9 @@
+import { RESOURCES } from './../resources';
 import { State } from './../State';
 import { Entity } from './../Entity';
-import { WorldComponent } from '../components/WorldComponent';
-import { TransformComponent } from '../components/TransformComponent';
-import { SpriteComponent } from '../components/SpriteComponent';
+import { WorldComponent } from './../components/WorldComponent';
+import { SpriteComponent } from './../components/SpriteComponent';
+import { TransformComponent } from './../components/TransformComponent';
 import { KEYS } from './../keys';
 
 export class DungeonState extends State {
@@ -15,7 +16,7 @@ export class DungeonState extends State {
     init = () => {
         let worldLayersEntity = new Entity({ name: 'layers' });
 
-        worldLayersEntity.addComponent(new TransformComponent());
+        //worldLayersEntity.addComponent(new TransformComponent());
 
         this.worldEntity.addChild(worldLayersEntity);
 
@@ -28,7 +29,7 @@ export class DungeonState extends State {
         worldLayersEntity.addChild(ceilingLayerEntity);
 
         let floorChunkEntity = new Entity();
-        
+
         floorChunkEntity.addComponent(new TransformComponent());
         floorChunkEntity.addComponent(new SpriteComponent({
             transformComponent: floorChunkEntity.getComponent('TransformComponent'),
@@ -42,17 +43,5 @@ export class DungeonState extends State {
         this.scene.push(this.worldEntity);
 
         this.inited = true;
-    }
-
-    input = (key) => {
-        
-    }
-
-    update = (delta) => {
-
-    }
-
-    draw = (context) => {
-        this.worldObject.draw(context);
     }
 }
