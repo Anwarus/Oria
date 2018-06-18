@@ -1,13 +1,12 @@
 import { RESOURCES } from './../resources';
 import { State } from './../State';
 import { Entity } from './../Entity';
-import { WorldComponent } from './../components/WorldComponent';
 import { SpriteComponent } from './../components/SpriteComponent';
 import { TransformComponent } from './../components/TransformComponent';
 import { KEYS } from './../keys';
 
 export class DungeonState extends State {
-    constructor(game) {
+    constructor({ game = {} } = {}) {
         super(game);
 
         this.worldEntity = new Entity({ name: 'world' });

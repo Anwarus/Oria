@@ -1,5 +1,5 @@
 export class StateManager {
-    constructor(initialState) {
+    constructor({ initialState = {} } = {}) {
         this.states = [];
 
         if(initialState) {

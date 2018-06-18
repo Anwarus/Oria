@@ -7,7 +7,7 @@ import { AudioComponent } from './../components/AudioComponent';
 import { DungeonState } from './DungeonState';
 
 export class LogoState extends State {
-    constructor(game) {
+    constructor({ game = {} } = {}) {
         super(game);
 
         this.sceneEntity = new Entity({ name: 'scene' });
@@ -43,6 +43,6 @@ export class LogoState extends State {
     }
 
     finishLoading = () => {
-        this.game.stateManager.addState(new DungeonState(this.game));
+        this.game.stateManager.addState(new DungeonState({ game: this.game }));
     }
 }

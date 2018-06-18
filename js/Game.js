@@ -4,15 +4,15 @@ import { StateManager } from './StateManager';
 import { LogoState } from './states/LogoState';
 
 export class Game {
-    constructor(canvas, settings) {
+    constructor({canvas = {}, settings = {}} = {}) {
         this.canvas = canvas;
         this.settings = settings;
 
         this.graphicContext = {};
         this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-        this.resourceManager = new ResourceManager(this.audioContext);
-        this.stateManager = new StateManager(new LogoState(this));
+        this.resourceManager = new ResourceManager({ audioContext: this.audioContext });
+        this.stateManager = new StateManager({ initialState: new LogoState({ game: this })});
 
         this.init();
     }

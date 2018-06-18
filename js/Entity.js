@@ -1,5 +1,5 @@
 export class Entity {
-    constructor({name = 'Entity', tag = '', parent = {}}) {
+    constructor({name = 'Entity', tag = '', parent = {}} = {}) {
         this.name = name;
         this.tag = tag;
         

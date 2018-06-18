@@ -1,7 +1,7 @@
 import { CounterReleaser } from './CounterReleaser';
 
 export class ResourceManager {
-    constructor(audioContext) {
+    constructor({ audioContext = {} } = {}) {
         this.audioContext = audioContext;
 
         this.graphics = [];
@@ -13,7 +13,7 @@ export class ResourceManager {
                     (bundle.audios ? bundle.audios.length: 0);
 
         if(count > 0) {
-            let counterReleaser = new CounterReleaser(count, callback);
+            let counterReleaser = new CounterReleaser({ counterEnd: count, callback: callback });
 
             if(bundle.graphics) {
                 for(let graphic of bundle.graphics) {

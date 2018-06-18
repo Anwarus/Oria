@@ -1,5 +1,5 @@
 export class CounterReleaser {
-    constructor(counterEnd, callback) {
+    constructor({ counterEnd = 1, callback = {} } = {}) {
         this.counterEnd = counterEnd;
         this.callback = callback;
 

@@ -1,11 +1,11 @@
 import { Component } from './../Component';
 
 export class SpriteComponent extends Component {
-    constructor({ transformComponent = {}, image = {},
-                  cellX = 0, cellY = 0, cellWidth = 0, cellHeight = 0 }) {
+    constructor({ transformComponentRef = {}, image = {},
+                  cellX = 0, cellY = 0, cellWidth = 0, cellHeight = 0 } = {}) {
         super('SpriteComponent');
 
-        this.transformComponent = transformComponent;
+        this.transformComponent = transformComponentRef;
 
         this.image = image;
 

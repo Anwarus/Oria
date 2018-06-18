@@ -7,4 +7,4 @@ const SETTINGS = {
     HEIGHT: 600
 };
 
-let game = new Game(CANVAS, SETTINGS);
+let game = new Game({ canvas: CANVAS, settings: SETTINGS });
