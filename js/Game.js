@@ -51,6 +51,7 @@ export class Game {
             
             //Assuming that requestAnimationFrame will call every 1/60 of second
             currentState.update(1./60.);
+            this.graphicContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
             currentState.draw(this.graphicContext);
         } else
             throw 'Error: Current state not provided';
