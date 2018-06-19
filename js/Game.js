@@ -52,9 +52,8 @@ export class Game {
             //Assuming that requestAnimationFrame will call every 1/60 of second
             currentState.update(1./60.);
             currentState.draw(this.graphicContext);
-        } else {
+        } else
             throw 'Error: Current state not provided';
-        }
         
         window.requestAnimationFrame(this.loop);
     }
