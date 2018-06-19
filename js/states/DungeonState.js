@@ -13,6 +13,8 @@ export class DungeonState extends State {
     }
 
     init = () => {
+        console.log('DungeonState');
+
         let worldLayersEntity = new Entity({ name: 'layers' });
 
         //worldLayersEntity.addComponent(new TransformComponent());
@@ -31,7 +33,7 @@ export class DungeonState extends State {
 
         floorChunkEntity.addComponent(new TransformComponent());
         floorChunkEntity.addComponent(new SpriteComponent({
-            transformComponent: floorChunkEntity.getComponent('TransformComponent'),
+            transformComponentRef: floorChunkEntity.getComponent('TransformComponent'),
             image: this.game.resourceManager.getGraphic('tile'),
             cellWidth: 64,
             cellHeight: 64

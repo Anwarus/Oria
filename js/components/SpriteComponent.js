@@ -14,7 +14,14 @@ export class SpriteComponent extends Component {
         this.cellWidth = image.naturalWidth || 0;
         this.cellHeight = image.naturalHeight || 0;
 
-        console.log(image.naturalWidth);
+        console.log('cellX: ' + this.cellX);
+        console.log('cellY: ' + this.cellY);
+        console.log('cellWidth: ' + this.cellWidth);
+        console.log('cellHeight: ' + this.cellHeight);
+        console.log('transformComponent.posX: ' + this.transformComponent.posX);
+        console.log('transformComponent.posY: ' + this.transformComponent.posY);
+        console.log('scaleX: ' + this.cellWidth * this.transformComponent.scaleX);
+        console.log('scaleY: ' + this.cellHeight * this.transformComponent.scaleY);
     }
 
     draw = (context) => {

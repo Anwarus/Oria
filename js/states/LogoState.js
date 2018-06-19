@@ -16,16 +16,20 @@ export class LogoState extends State {
     }
 
     init = () => {
+        console.log('LogoState');
+
         this.sceneEntity.addComponent(new AudioComponent({
             audioContext: this.game.audioContext,
             audioSource: this.game.resourceManager.getAudio('theme')
         }));
 
+        this.logoEntity.addComponent(new TransformComponent({
+            posX: 0,
+            posY: 0
+        }));
+
         this.logoEntity.addComponent(new SpriteComponent({
-            transformComponent: new TransformComponent({
-                posX: 0,
-                posY: 0
-            }),
+            transformComponentRef: this.logoEntity.getComponent('TransformComponent'),
             image: this.game.resourceManager.getGraphic('logo')
         }));
 
