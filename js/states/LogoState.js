@@ -4,6 +4,7 @@ import { Entity } from './../Entity';
 import { SpriteComponent } from './../components/SpriteComponent';
 import { TransformComponent } from './../components/TransformComponent';
 import { AudioComponent } from './../components/AudioComponent';
+import { MapGenerator } from './../MapGenerator';
 import { DungeonState } from './DungeonState';
 
 export class LogoState extends State {
@@ -47,6 +48,7 @@ export class LogoState extends State {
     }
 
     finishLoading = () => {
+        console.log(MapGenerator.generate(10, 10, 20));
         this.game.stateManager.addState(new DungeonState({ game: this.game }));
     }
 }
