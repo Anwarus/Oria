@@ -1,4 +1,4 @@
-const TYPE = {
+export const TYPE = {
     EMPTY: 0,
     FLOOR: 1,
     WALL: 2
@@ -21,14 +21,15 @@ export class MapGenerator {
     }
 
     static generatePaths(width, height, length) {
-        let map = new Array(width)
-            .fill(new Array(height)
-                .fill(TYPE.EMPTY));
-
+        let map = Array.from(Array(width), () => new Array(height).fill(TYPE.EMPTY));
+            
+        console.log('new createrd array');
+        console.log(map);
         let startPoint = this.getRandomPoint(width, height);
 
         map[startPoint.x][startPoint.y] = TYPE.FLOOR;
-
+        console.log('set first point');
+        console.log(map);
         let currentPoint = startPoint;
         for(let i=0; i<length; i++) {
             
@@ -63,16 +64,17 @@ export class MapGenerator {
 
         let direction = point.x - 1;
         if(direction >= 0) {
-            if(map[direction, point.y] === TYPE.EMPTY)
+            if(map[direction][point.y] == TYPE.EMPTY) {
                 possibleDirections.push({
                     x: direction,
                     y: point.y
                 });
+            }        
         }
 
         direction = point.x + 1;
         if(direction < map.length) {
-            if(map[direction, point.y] === TYPE.EMPTY)
+            if(map[direction][point.y] == TYPE.EMPTY)
                 possibleDirections.push({
                     x: direction,
                     y: point.y
@@ -81,7 +83,7 @@ export class MapGenerator {
 
         direction = point.y - 1;
         if(direction >= 0) {
-            if(map[point.x, direction] === TYPE.EMPTY)
+            if(map[point.x][direction] == TYPE.EMPTY)
                 possibleDirections.push({
                     x: point.x,
                     y: direction
@@ -90,9 +92,9 @@ export class MapGenerator {
 
         direction = point.y + 1;
         if(direction < map[0].length) {
-            if(map[point.x, direction] === TYPE.EMPTY)
+            if(map[point.x][direction] == TYPE.EMPTY)
                 possibleDirections.push({
-                    x: point,y,
+                    x: point.y,
                     y: direction
                 });
         }
