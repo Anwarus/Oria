@@ -11,10 +11,10 @@ export class MapGenerator {
 
     static generate(width, height, length) {
         let map = this.generatePaths(width - 2, height - 2, length);
-
-        map.map((column) => {
-            column.unshift(TYPE.EMPTY);
-            column.push(TYPE.EMPTY);
+        map = this.createBorders(map);
+        
+        map.map((col) => {
+            console.log(col);
         });
 
         return map;
@@ -23,17 +23,12 @@ export class MapGenerator {
     static generatePaths(width, height, length) {
         let map = Array.from(Array(width), () => new Array(height).fill(TYPE.EMPTY));
             
-        console.log('new createrd array');
-        console.log(map);
         let startPoint = this.getRandomPoint(width, height);
 
         map[startPoint.x][startPoint.y] = TYPE.FLOOR;
-        console.log('set first point');
-        console.log(map);
-        let currentPoint = startPoint;
-        for(let i=0; i<length; i++) {
-            
 
+        let currentPoint = startPoint;
+        for(let i=0; i<length; i++) {  
             let possibleDirections = this.getPossibleDirections(map, currentPoint);
 
             if(possibleDirections.length === 0) {
@@ -48,6 +43,19 @@ export class MapGenerator {
             
             map[currentPoint.x][currentPoint.y] = TYPE.FLOOR;
         }
+
+        return map;
+    }
+
+    static createBorders(map) {
+        let height = map[0].length + 2;
+
+        map.map((column) => {
+            column.unshift(TYPE.EMPTY);
+            column.push(TYPE.EMPTY);
+        });
+        map.unshift(new Array(height).fill(TYPE.EMPTY));
+        map.push(new Array(height).fill(TYPE.EMPTY));
 
         return map;
     }

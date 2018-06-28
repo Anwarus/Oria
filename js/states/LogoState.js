@@ -48,7 +48,7 @@ export class LogoState extends State {
     }
 
     finishLoading = () => {
-        console.log(MapGenerator.generate(10, 10, 20));
+        MapGenerator.generate(10, 10, 20);
         this.game.stateManager.addState(new DungeonState({ game: this.game }));
     }
 }
