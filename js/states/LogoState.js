@@ -48,7 +48,9 @@ export class LogoState extends State {
     }
 
     finishLoading = () => {
-        MapGenerator.generate(10, 10, 20);
-        this.game.stateManager.addState(new DungeonState({ game: this.game }));
+        this.game.stateManager.addState(new DungeonState({ 
+            game: this.game, 
+            floorLayerEntities: MapGenerator.generate(10, 10, 20, this.game.resourceManager)
+        }));
     }
 }

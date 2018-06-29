@@ -1,3 +1,7 @@
+import { Entity } from './Entity';
+import { SpriteComponent } from './components/SpriteComponent';
+import { TransformComponent } from './components/TransformComponent';
+
 export const TYPE = {
     EMPTY: 0,
     FLOOR: 1,
@@ -9,15 +13,15 @@ export class MapGenerator {
 
     }
 
-    static generate(width, height, length) {
+    static generate(width, height, length, resourceManager) {
         let map = this.generatePaths(width - 2, height - 2, length);
         map = this.createBorders(map);
         
-        map.map((col) => {
-            console.log(col);
-        });
+        // map.map((col) => {
+        //     console.log(col);
+        // });
 
-        return map;
+        return this.spawnEntities(map, resourceManager);
     }
 
     static generatePaths(width, height, length) {
@@ -58,6 +62,33 @@ export class MapGenerator {
         map.push(new Array(height).fill(TYPE.EMPTY));
 
         return map;
+    }
+
+    static spawnEntities(map, resourceManager) {
+        let entities = [];
+
+        for(let x=0; x<map.length; x++) {
+            for(let y=0; y<map[x].length; y++) {
+                if(map[x][y] === TYPE.FLOOR) {
+                    let floorEntity = new Entity();
+                    console.log('adadasddsd');
+                    floorEntity.addComponent(new TransformComponent({
+                        posX: x * 64,
+                        posY: y * 64
+                    }));
+                    floorEntity.addComponent(new SpriteComponent({
+                        transformComponentRef: floorEntity.getComponent('TransformComponent'),
+                        image: resourceManager.getGraphic('tile'),
+                        cellWidth: 64,
+                        cellHeight: 64
+                    }));
+
+                    entities.push(floorEntity);
+                }
+            }
+        }
+
+        return entities;
     }
 
     static getRandomPoint(xRange, yRange) {

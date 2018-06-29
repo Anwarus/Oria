@@ -6,10 +6,11 @@ import { TransformComponent } from './../components/TransformComponent';
 import { KEYS } from './../keys';
 
 export class DungeonState extends State {
-    constructor({ game = {} } = {}) {
+    constructor({ game = {}, floorLayerEntities = [] } = {}) {
         super(game);
 
         this.worldEntity = new Entity({ name: 'world' });
+        this.floorLayerEntities = floorLayerEntities;
     }
 
     init = () => {
@@ -29,17 +30,19 @@ export class DungeonState extends State {
         worldLayersEntity.addChild(objectLayerEntity);
         worldLayersEntity.addChild(ceilingLayerEntity);
 
-        let floorChunkEntity = new Entity();
+        // let floorChunkEntity = new Entity();
 
-        floorChunkEntity.addComponent(new TransformComponent());
-        floorChunkEntity.addComponent(new SpriteComponent({
-            transformComponentRef: floorChunkEntity.getComponent('TransformComponent'),
-            image: this.game.resourceManager.getGraphic('tile'),
-            cellWidth: 64,
-            cellHeight: 64
-        }));
+        // floorChunkEntity.addComponent(new TransformComponent());
+        // floorChunkEntity.addComponent(new SpriteComponent({
+        //     transformComponentRef: floorChunkEntity.getComponent('TransformComponent'),
+        //     image: this.game.resourceManager.getGraphic('tile'),
+        //     cellWidth: 64,
+        //     cellHeight: 64
+        // }));
 
-        floorLayerEntity.addChild(floorChunkEntity);
+        // floorLayerEntity.addChild(floorChunkEntity);
+
+        floorLayerEntity.addChilds(this.floorLayerEntities);
 
         this.scene.push(this.worldEntity);
 
