@@ -25,6 +25,14 @@ export class Entity {
         this.childs.push(child);
     }
 
+    addChilds = (childs) => {
+        childs.map((child) => {
+            child.parent = this;
+        });  
+
+        this.childs = this.childs.concat(childs);
+    }
+
     input = (key) => {
         this.components.forEach((component) => {
             if(component.input)
