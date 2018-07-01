@@ -3,8 +3,8 @@ import { Game } from './js/Game';
 const CANVAS = document.getElementById('screen');
 
 const SETTINGS = {
-    WIDTH: 800,
-    HEIGHT: 600
+    WIDTH: 1280,
+    HEIGHT: 720
 };
 
 let game = new Game({ canvas: CANVAS, settings: SETTINGS });
