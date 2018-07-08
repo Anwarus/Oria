@@ -32,9 +32,14 @@ export class Game {
 
         this.view = new View({ context: graphicContext });
 
-        //Bind input function to be called on every key pressed for current state
+        //Bind input function to be called on every key down for current state
+        document.addEventListener('keydown', (event) => {
+            this.input(event);
+        });
+
+        //Bind input function to be called on every key up for current state
         document.addEventListener('keyup', (event) => {
-            this.input(event.key);
+            this.input(event);
         });
 
         //Load required data to be able to start game loading screen

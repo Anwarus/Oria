@@ -3,6 +3,7 @@ import { State } from './../State';
 import { Entity } from './../Entity';
 import { SpriteComponent } from './../components/SpriteComponent';
 import { TransformComponent } from './../components/TransformComponent';
+import { ViewMovementComponent } from './../components/ViewMovementComponent';
 import { KEYS } from './../keys';
 
 export class DungeonState extends State {
@@ -11,6 +12,7 @@ export class DungeonState extends State {
 
         this.worldEntity = new Entity({ name: 'world' });
         this.floorLayerEntities = floorLayerEntities;
+        this.viewControllerEntity = new Entity({ game: game, name: 'viewController' });
     }
 
     init = () => {
@@ -44,7 +46,10 @@ export class DungeonState extends State {
 
         floorLayerEntity.addChilds(this.floorLayerEntities);
 
+        this.viewControllerEntity.addComponent(new ViewMovementComponent({ game: this.game }));
+
         this.scene.push(this.worldEntity);
+        this.scene.push(this.viewControllerEntity);
 
         this.inited = true;
     }

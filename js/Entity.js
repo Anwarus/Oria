@@ -1,5 +1,5 @@
 export class Entity {
-    constructor({name = 'Entity', tag = '', parent = {}} = {}) {
+    constructor({ name = 'Entity', tag = '', parent = {} } = {}) {
         this.name = name;
         this.tag = tag;
         
@@ -33,10 +33,10 @@ export class Entity {
         this.childs = this.childs.concat(childs);
     }
 
-    input = (key) => {
+    input = (event) => {
         this.components.forEach((component) => {
             if(component.input)
-                component.input(key);
+                component.input(event);
         });
     }
 

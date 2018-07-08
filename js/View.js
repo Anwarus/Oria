@@ -16,6 +16,9 @@ export class View {
     drawImage = (image = {}, 
                  sourceX = 0, sourceY = 0, sourceWidth = image.naturalWidth, sourceHeight = image.naturalHeight,
                  destX = 0, destY = 0, destWidth = image.naturalWidth, destHeight = image.naturalHeight) => {
+        destX += this.posX;
+        destY += this.posY;
+
         if((this.betweenWidth(destX) || this.betweenWidth(destX + destWidth)) &&
             this.betweenHeigth(destY) || this.betweenHeigth(destY + destHeight)) {
             this.context.drawImage(image,
@@ -26,6 +29,11 @@ export class View {
 
     clearRect = (destX = 0, destY = 0, destWidth = SETTINGS.WIDTH, destHeight = SETTINGS.HEIGHT) => {
         this.context.clearRect(destX, destY, destWidth, destHeight);
+    }
+
+    move = (deltaX, deltaY) => {
+        this.posX += deltaX;
+        this.posY += deltaY;
     }
 
     betweenWidth = (point) => {
