@@ -1,14 +1,16 @@
+import { SETTINGS } from './settings';
 import { RESOURCES } from './resources';
 import { ResourceManager } from './ResourceManager';
 import { StateManager } from './StateManager';
 import { LogoState } from './states/LogoState';
+import { View } from './View';
 
 export class Game {
     constructor({canvas = {}, settings = {}} = {}) {
         this.canvas = canvas;
         this.settings = settings;
 
-        this.graphicContext = {};
+        this.view = {};
         this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
         this.resourceManager = new ResourceManager({ audioContext: this.audioContext });
@@ -21,10 +23,14 @@ export class Game {
         this.canvas.width = this.settings.width || 800;
         this.canvas.height = this.settings.height || 600;
 
+        var graphicContext = {};
+
         if(this.canvas.getContext)
-            this.graphicContext = this.canvas.getContext('2d');
+            graphicContext = this.canvas.getContext('2d');
         else
             throw 'Error: Context unsupported!';
+
+        this.view = new View({ context: graphicContext });
 
         //Bind input function to be called on every key pressed for current state
         document.addEventListener('keyup', (event) => {
@@ -51,8 +57,8 @@ export class Game {
             
             //Assuming that requestAnimationFrame will call every 1/60 of second
             currentState.update(1./60.);
-            this.graphicContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
-            currentState.draw(this.graphicContext);
+            this.view.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            currentState.draw(this.view);
         } else
             throw 'Error: Current state not provided';
         

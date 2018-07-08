@@ -1,7 +1,9 @@
+import { SETTINGS } from './settings';
+
 export class View {
     constructor({ context = {},
                   posX = 0, posY = 0,
-                  width = 1280, height = 720 } = {}) {
+                  width = SETTINGS.WIDTH, height = SETTINGS.HEIGHT } = {}) {
         this.context = context;
         
         this.posX = posX;
@@ -20,6 +22,10 @@ export class View {
                  sourceX, sourceY, sourceWidth, sourceHeight, 
                  destX, destY, destWidth, destHeight);
         }
+    }
+
+    clearRect = (destX = 0, destY = 0, destWidth = SETTINGS.WIDTH, destHeight = SETTINGS.HEIGHT) => {
+        this.context.clearRect(destX, destY, destWidth, destHeight);
     }
 
     betweenWidth = (point) => {
