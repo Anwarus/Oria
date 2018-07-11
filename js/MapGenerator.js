@@ -1,3 +1,4 @@
+import { SETTINGS } from './settings';
 import { Entity } from './Entity';
 import { SpriteComponent } from './components/SpriteComponent';
 import { TransformComponent } from './components/TransformComponent';
@@ -70,18 +71,19 @@ export class MapGenerator {
         for(let x=0; x<map.length; x++) {
             for(let y=0; y<map[x].length; y++) {
                 if(map[x][y] === TYPE.FLOOR) {
-                    let floorEntity = new Entity();
-                    console.log('adadasddsd');
-                    floorEntity.addComponent(new TransformComponent({
-                        posX: x * 64,
-                        posY: y * 64
-                    }));
-                    floorEntity.addComponent(new SpriteComponent({
-                        transformComponentRef: floorEntity.getComponent('TransformComponent'),
-                        image: resourceManager.getGraphic('tile'),
-                        cellWidth: 64,
-                        cellHeight: 64
-                    }));
+                    let floorEntity = this.getFloor(x, y);
+
+                    if(map[x-1][y] !== TYPE.FLOOR)
+                        floorEntity.addChild(this.getWall(x-1, y));
+                    
+                    if(map[x][y-1] !== TYPE.FLOOR)
+                        floorEntity.addChild(this.getWall(x, y-1));
+
+                    if(map[x+1][y] !== TYPE.FLOOR)
+                        floorEntity.addChild(this.getWall(x+1, y));
+
+                    if(map[x][y+1] !== TYPE.FLOOR)
+                        floorEntity.addChild(this.getWall(x, y+1));
 
                     entities.push(floorEntity);
                 }
@@ -139,5 +141,41 @@ export class MapGenerator {
         }
         
         return possibleDirections;
+    }
+
+    static getFloor(x, y) {
+        let floorEntity = new Entity();
+                    
+        floorEntity.addComponent(new TransformComponent({
+            posX: x * SETTINGS.GRID_SIZE,
+            posY: y * SETTINGS.GRID_SIZE
+        }));
+
+        floorEntity.addComponent(new SpriteComponent({
+            transformComponentRef: floorEntity.getComponent('TransformComponent'),
+            image: resourceManager.getGraphic('tile'),
+            cellWidth: SETTINGS.GRID_SIZE,
+            cellHeight: SETTINGS.GRID_SIZE
+        }));
+
+        return floorEntity;
+    }
+
+    static getWall(x, y) {
+        let wallEntity = new Entity();
+
+        wallEntity.addChild(new TransformComponent({
+            posX: x * SETTINGS.GRID_SIZE,
+            posY: y * SETTINGS.GRID_SIZE
+        }));
+
+        wallEntity.addComponent(new SpriteComponent({
+            transformComponentRef: wallEntity.getComponent('TransformComponent'),
+            image: resourceManager.getGraphic(),
+            cellWidth: SETTINGS.GRID_SIZE,
+            cellHeight: SETTINGS.GRID_SIZE
+        }));
+
+        return wallEntity;
     }
 }
